@@ -6,7 +6,8 @@ class UploadComponent extends Component {
     super(props);
     this.state = { 
       csv: '',
-      users: []
+      users: [],
+      error_messages: ''
     }
   }
 
@@ -16,12 +17,12 @@ class UploadComponent extends Component {
     formData.append('file', e.target.files[0]);
       axios({
         method: 'POST',
-        url: 'https://family-tree-api.herokuapp.com/api/v1/users',
+        url: 'http://localhost:3002/api/v1/users',
         data: formData,
       })
       .then((list)=>{
-        console.log(list);
-        this.addNewUsers(list.data)
+        this.addNewUsers(list.data);
+        this.setState({ error_messages: list.data.errors });
       }).catch(error=>{console.log("err", error)})
       
     }
@@ -32,10 +33,22 @@ class UploadComponent extends Component {
     }
 
   render() {
+    let alert_message;
+
+    if(this.state.error_messages != ""){
+      alert_message = <p style={{color: "red"}}>File already exists</p>
+    }
+    
     return (
-      <div>
-        <h1>Upload CSV here</h1>
-        <input type="file" name="file" onChange={(e)=>this.onChange(e)} />
+      <div className="container">
+        <div className="row">
+          <div className="col-12">
+            <br/>
+            <h2>Upload CSV here</h2>
+            { alert_message }
+            <input type="file" name="file" onChange={(e)=>this.onChange(e)} />
+          </div>
+        </div>
       </div>
     )
   }

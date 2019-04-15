@@ -13,7 +13,7 @@ class UsersComponent extends React.Component {
   }
 
   componentDidMount() {
-    axios.get("https://family-tree-api.herokuapp.com/api/v1/users")
+    axios.get("http://localhost:3002/api/v1/users")
     .then(response => {
       this.setState({ users: response.data })
     })
@@ -30,19 +30,21 @@ class UsersComponent extends React.Component {
 
   render() {
     return(
-      <div className="wrapper">
-        <UploadComponent />
-        <h3>Family hierarchy</h3>
-        <table className="table table-striped">
-          <thead>
-            <tr>
-              <th>Name</th>
-            </tr>
-          </thead>
-          <tbody>
-            { this.tabRow() }
-          </tbody>  
-        </table>
+      <div className="container">
+        <div className="wrapper">
+          <UploadComponent />
+          <br/>
+          <table className="table table-striped">
+            <thead>
+              <tr>
+                <th>Name</th>
+              </tr>
+            </thead>
+            <tbody>
+              { this.tabRow() }
+            </tbody>  
+          </table>
+        </div>
       </div>
     )
   }
