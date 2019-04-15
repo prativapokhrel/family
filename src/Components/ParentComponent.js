@@ -14,7 +14,6 @@ class ParentComponent extends React.Component {
                   <li>
                     <a href="#">{this.props.users.user.parent.name}</a>
                     <ul>
-                    
                       <li>
                         <a href="#">{this.props.users.user.name}</a>
                         <ul>

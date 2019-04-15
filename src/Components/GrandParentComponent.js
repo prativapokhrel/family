@@ -3,7 +3,6 @@ import React from "react";
 class GrandParentComponent extends React.Component {
 
   render() {
-    console.log("USerrrrrrrrrr")
     if (this.props.users) {
       console.log("dat", this.props.users.user.sons[0].son.sons[0].son.name);
       return (
