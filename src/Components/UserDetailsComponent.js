@@ -20,7 +20,7 @@ class UserDetailsComponent extends React.Component {
 
   componentDidMount() {
     const id = this.props.location.state.id;
-    fetch(`http://localhost:3002/api/v1/users/${id}`)
+    fetch(`https://family-tree-api.herokuapp.com/api/v1/users/${id}`)
       .then(response => {
         response.json().then(data => {
           this.setState({ 
