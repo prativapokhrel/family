@@ -13,7 +13,7 @@ class UsersComponent extends React.Component {
   }
 
   componentDidMount() {
-    axios.get("http://localhost:3002/api/v1/users")
+    axios.get("https://family-tree-api.herokuapp.com/api/v1/users")
     .then(response => {
       this.setState({ users: response.data })
     })

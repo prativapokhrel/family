@@ -16,7 +16,7 @@ class UploadComponent extends Component {
     formData.append('file', e.target.files[0]);
       axios({
         method: 'POST',
-        url: 'http://localhost:3002/api/v1/users',
+        url: 'https://family-tree-api.herokuapp.com/api/v1/users',
         data: formData,
       })
       .then((list)=>{
