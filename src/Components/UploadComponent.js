@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import axios, { post } from "axios";
+import axios from "axios";
 
 class UploadComponent extends Component {
   constructor(props) {
@@ -12,31 +12,30 @@ class UploadComponent extends Component {
 
   onChange(e) 
   {
-
     let formData = new FormData();
     formData.append('file', e.target.files[0]);
-      fetch('http://localhost:3002/api/v1/users', {
+      axios({
         method: 'POST',
-        body: formData,
-      }).then((response) => {return response.json()})
-      .then((list)=>{
-        this.addNewFruit(list)
+        url: 'http://localhost:3002/api/v1/users',
+        data: formData,
       })
+      .then((list)=>{
+        console.log(list);
+        this.addNewUsers(list.data)
+      }).catch(error=>{console.log("err", error)})
       
     }
-    addNewFruit(list){
+    addNewUsers(list){
       this.setState({
         users: this.state.users.concat(list)
       })
-      console.log("wwww", this.state.users);
-  }
+    }
 
   render() {
     return (
       <div>
         <h1>Upload CSV here</h1>
         <input type="file" name="file" onChange={(e)=>this.onChange(e)} />
-        <Users users = {this.state.users} />
       </div>
     )
   }
